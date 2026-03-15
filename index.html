@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Suraj Vidhyanand Patil — Strategy & Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0f2240;
+    --teal:   #0a6e6e;
+    --teal2:  #0d9488;
+    --cream:  #faf8f4;
+    --warm:   #f0ebe0;
+    --text:   #1a1a2e;
+    --muted:  #6b7280;
+    --line:   #d1cfc9;
+    --accent: #c8973a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--navy); letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--teal2); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy); color: white !important;
+    padding: 9px 20px; border-radius: 4px;
+    font-size: 12px !important; letter-spacing: 0.1em !important;
+  }
+  .nav-cta:hover { background: var(--teal) !important; color: white !important; }
+
+  /* ── HERO ────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    padding: 100px 60px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--teal2);
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--teal2);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 900; line-height: 1.0;
+    color: var(--navy); letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--teal2);
+  }
+  .hero-cert {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--accent);
+    letter-spacing: 0.06em; margin-bottom: 28px;
+  }
+  .hero-desc {
+    font-size: 17px; line-height: 1.75;
+    color: var(--muted); max-width: 440px;
+    font-weight: 300; margin-bottom: 44px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy); color: white;
+    padding: 14px 30px; border-radius: 4px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--navy); color: var(--navy);
+    padding: 14px 30px; border-radius: 4px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--navy); color: white; transform: translateY(-1px); }
+
+  .hero-right {
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 80px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; top: -120px; right: -120px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(13,148,136,0.12);
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(200,151,58,0.08);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; width: 100%; max-width: 380px;
+    position: relative; z-index: 1;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-card:first-child { border-radius: 12px 0 0 0; }
+  .stat-card:nth-child(2) { border-radius: 0 12px 0 0; }
+  .stat-card:nth-child(3) { border-radius: 0 0 0 12px; }
+  .stat-card:last-child { border-radius: 0 0 12px 0; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900;
+    color: white; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--teal2); }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; line-height: 1.5; }
+
+  /* ── SECTION BASE ────────────────────────────────── */
+  section { padding: 100px 60px; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--teal2); margin-bottom: 16px;
+  }
+  .section-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--teal2); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 900; color: var(--navy);
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 60px;
+  }
+
+  /* ── ABOUT ───────────────────────────────────────── */
+  #about { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-text p {
+    font-size: 16px; line-height: 1.85; color: var(--muted);
+    font-weight: 300; margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-details { display: flex; flex-direction: column; gap: 0; }
+  .detail-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 0; border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .detail-row:first-child { border-top: 1px solid var(--line); }
+  .detail-label { color: var(--muted); letter-spacing: 0.03em; }
+  .detail-val { color: var(--navy); font-weight: 500; text-align: right; }
+
+  /* ── EXPERIENCE ──────────────────────────────────── */
+  #experience { background: var(--cream); }
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 60px; padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .exp-item:first-child { border-top: 1px solid var(--line); }
+  .exp-meta { padding-top: 4px; }
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.04em; margin-bottom: 10px;
+  }
+  .exp-co {
+    font-size: 13px; font-weight: 500;
+    color: var(--teal); margin-bottom: 4px;
+  }
+  .exp-loc { font-size: 12px; color: var(--muted); }
+  .exp-content {}
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--navy); margin-bottom: 12px;
+  }
+  .exp-context {
+    font-size: 14px; color: var(--muted); font-style: italic;
+    margin-bottom: 20px; line-height: 1.6;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-bullets li {
+    font-size: 14px; line-height: 1.7; color: var(--muted);
+    padding-left: 18px; position: relative; font-weight: 300;
+  }
+  .exp-bullets li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--teal2); font-size: 12px; top: 3px;
+  }
+  .exp-bullets li strong { color: var(--navy); font-weight: 500; }
+
+  /* ── SKILLS ──────────────────────────────────────── */
+  #skills { background: var(--navy); }
+  #skills .section-title { color: white; }
+  #skills .section-tag { color: var(--teal2); }
+  #skills .section-tag::before { background: var(--teal2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .skill-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .skill-card:hover { background: rgba(255,255,255,0.08); }
+  .skill-icon {
+    width: 36px; height: 36px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .skill-icon svg { width: 28px; height: 28px; stroke: var(--teal2); fill: none; stroke-width: 1.5; }
+  .skill-name {
+    font-size: 14px; font-weight: 500;
+    color: white; margin-bottom: 12px; letter-spacing: 0.02em;
+  }
+  .skill-items { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.45); font-weight: 300; }
+
+  /* ── EDUCATION ───────────────────────────────────── */
+  #education { background: white; }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .edu-card {
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 36px; position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--teal2);
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--navy); margin-bottom: 6px; line-height: 1.3;
+  }
+  .edu-school { font-size: 13px; color: var(--teal); margin-bottom: 4px; font-weight: 500; }
+  .edu-year { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .edu-score {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--accent);
+    background: rgba(200,151,58,0.08);
+    padding: 5px 12px; border-radius: 3px;
+  }
+
+  /* ── CERTS ───────────────────────────────────────── */
+  #certs { background: var(--warm); }
+  .certs-list { display: flex; flex-direction: column; gap: 2px; }
+  .cert-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: white; padding: 24px 32px;
+    border: 1px solid var(--line);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .cert-row:first-child { border-radius: 8px 8px 0 0; }
+  .cert-row:last-child { border-radius: 0 0 8px 8px; }
+  .cert-row:hover { border-color: var(--teal2); transform: translateX(4px); }
+  .cert-left { display: flex; align-items: center; gap: 20px; }
+  .cert-badge {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--navy); display: flex;
+    align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--teal2); letter-spacing: 0.05em; font-weight: 400;
+    flex-shrink: 0;
+  }
+  .cert-name { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 3px; }
+  .cert-issuer { font-size: 12px; color: var(--muted); }
+  .cert-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--teal2);
+  }
+
+  /* ── CONTACT ─────────────────────────────────────── */
+  #contact {
+    background: var(--navy);
+    text-align: center; padding: 120px 60px;
+  }
+  #contact .section-tag { justify-content: center; }
+  #contact .section-tag::before { display: none; }
+  #contact .section-title { color: white; margin-bottom: 20px; }
+  .contact-sub {
+    font-size: 17px; color: rgba(255,255,255,0.5);
+    font-weight: 300; margin-bottom: 50px;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+    line-height: 1.7; margin-bottom: 50px;
+  }
+  .contact-links {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: white; text-decoration: none;
+    padding: 14px 24px; border-radius: 4px;
+    font-size: 13px; font-weight: 400;
+    transition: all 0.2s; letter-spacing: 0.03em;
+  }
+  .contact-link:hover {
+    background: var(--teal); border-color: var(--teal);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: #0a1a2e; padding: 28px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ── ANIMATIONS ──────────────────────────────────── */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 80px 24px 60px; }
+    section { padding: 70px 24px; }
+    .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+    .exp-item { grid-template-columns: 1fr; gap: 12px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+  }
+  @media (max-width: 560px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S<span>.</span>Patil</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left fade-up">
+    <div class="hero-tag">Strategy &amp; Operations Professional</div>
+    <h1 class="hero-name">Suraj<br/><em>Vidhyanand</em><br/>Patil</h1>
+    <div class="hero-cert">CAPM® · Google Data Analytics · Emory Consulting</div>
+    <p class="hero-desc">
+      Business analyst and program management professional helping enterprises translate complex operational data into decisions that matter. Based in Hyderabad.
+    </p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">9<span>.</span>89</div>
+        <div class="stat-label">B.Tech CGPA<br/>KITCOEK</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1<span>+</span></div>
+        <div class="stat-label">Years enterprise<br/>experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3<span>×</span></div>
+        <div class="stat-label">Industry<br/>certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Enterprise<br/>accounts managed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid fade-up">
+    <div class="about-text">
+      <p>
+        I'm a <strong>CAPM®-certified Strategy &amp; Operations professional</strong> currently working as Associate Program Manager at CtrlS Datacenters, one of India's largest Tier-IV data center operators. I specialise in program governance, SLA performance management, and building the kind of structured reporting that helps leadership make faster, better decisions.
+      </p>
+      <p>
+        My background combines an engineering foundation — <strong>9.89 CGPA in Electronics &amp; Telecom</strong> — with hands-on enterprise operations experience and a strong interest in business strategy, consulting frameworks, and systems thinking.
+      </p>
+      <p>
+        I'm actively pursuing a transition into <strong>management consulting, corporate strategy, or government advisory roles</strong> where I can apply structured problem solving at a broader organisational scale.
+      </p>
+    </div>
+    <div class="about-details">
+      <div class="detail-row">
+        <span class="detail-label">Location</span>
+        <span class="detail-val">Hyderabad, India</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Current Role</span>
+        <span class="detail-val">Associate Program Manager</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Company</span>
+        <span class="detail-val">CtrlS Datacenters Pvt. Ltd.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Certification</span>
+        <span class="detail-val">CAPM® — PMI, 2025</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Targeting</span>
+        <span class="detail-val">Consulting · Strategy · Advisory</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Languages</span>
+        <span class="detail-val">English · Hindi · Marathi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Experience</div>
+  <h2 class="section-title">Where I've Worked</h2>
+  <div class="exp-list">
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-period">Jun 2025 — Present</div>
+        <div class="exp-co">CtrlS Datacenters</div>
+        <div class="exp-loc">Hyderabad</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Associate Program Manager</div>
+        <div class="exp-context">Program governance and service delivery strategy across enterprise accounts at one of India's largest Tier-IV data center operators.</div>
+        <ul class="exp-bullets">
+          <li>Built a structured SLA performance tracker across <strong>5+ enterprise accounts</strong>, cutting governance reporting preparation time by <strong>~40%</strong> and enabling consistent weekly leadership reviews.</li>
+          <li>Identified <strong>3 recurring incident patterns</strong> through systematic trend analysis; recommendations directly informed process changes that improved first-call resolution rates.</li>
+          <li>Developed Excel-based MIS dashboards and operational reports consumed by senior leadership for strategic reviews and client escalation decisions.</li>
+          <li>Maintained project governance documentation — action logs, risk registers, delivery trackers — ensuring <strong>100% SLA timeline adherence</strong> across all active accounts.</li>
+          <li>Managed end-to-end stakeholder communication across Network, Windows, and Linux technical teams, resolving enterprise service requests without escalation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-period">Jun 2024 — Jun 2025</div>
+        <div class="exp-co">CtrlS Datacenters</div>
+        <div class="exp-loc">Hyderabad</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Associate Engineer, Operations</div>
+        <div class="exp-context">Operational analysis and multi-client service delivery in a complex enterprise technology environment supporting 50+ enterprise customers.</div>
+        <ul class="exp-bullets">
+          <li>Analysed <strong>100+ monthly service requests</strong> to identify root causes and recurring failure patterns, producing structured reports that reduced repeat incident categories.</li>
+          <li>Prepared performance summaries and operational visibility reports for cross-functional internal teams, supporting data-driven decision-making at the operational level.</li>
+          <li>Maintained SLA compliance monitoring and stakeholder communication logs; achieved <strong>zero SLA breach incidents in Q4 2024</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Skills</div>
+  <h2 class="section-title">What I Bring</h2>
+  <div class="skills-grid fade-up">
+
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <div class="skill-name">Consulting & Strategy</div>
+      <div class="skill-items">Structured problem solving · Hypothesis-driven analysis · Business case development · Slide storytelling</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="skill-name">Strategy & Operations</div>
+      <div class="skill-items">KPI design · SLA management · Governance reporting · Process optimisation · Operational analytics</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <div class="skill-name">Program Management</div>
+      <div class="skill-items">Project tracking · Risk registers · Action logs · PMO support · Delivery governance (CAPM®)</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <div class="skill-name">Data & Reporting</div>
+      <div class="skill-items">Excel (advanced) · MIS dashboards · Incident trend analysis · Performance reporting · Data visualisation</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="skill-name">Stakeholder Management</div>
+      <div class="skill-items">Cross-functional collaboration · Written synthesis · Executive communication · Escalation management</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="skill-name">Leadership</div>
+      <div class="skill-items">Club presidency (200+ students) · Conference management · Workshop design · Team coordination</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-tag">Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-grid fade-up">
+    <div class="edu-card">
+      <div class="edu-degree">B.Tech — Electronics &amp; Telecommunication Engineering</div>
+      <div class="edu-school">Kolhapur Institute of Technology's College of Engineering</div>
+      <div class="edu-year">2020 – 2024</div>
+      <div class="edu-score">CGPA: 9.89 / 10.0</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+      <div class="edu-school">Maharashtra State Board</div>
+      <div class="edu-year">Class XII</div>
+      <div class="edu-score">85.85%</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-tag">Certifications</div>
+  <h2 class="section-title">Credentials</h2>
+  <div class="certs-list fade-up">
+    <div class="cert-row">
+      <div class="cert-left">
+        <div class="cert-badge">CAPM</div>
+        <div>
+          <div class="cert-name">Certified Associate in Project Management (CAPM®)</div>
+          <div class="cert-issuer">Project Management Institute (PMI)</div>
+        </div>
+      </div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-row">
+      <div class="cert-left">
+        <div class="cert-badge">GDA</div>
+        <div>
+          <div class="cert-name">Google Professional Certificate in Data Analytics</div>
+          <div class="cert-issuer">Google / Coursera</div>
+        </div>
+      </div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-row">
+      <div class="cert-left">
+        <div class="cert-badge">EMR</div>
+        <div>
+          <div class="cert-name">Management Consulting Specialization</div>
+          <div class="cert-issuer">Emory University / Coursera</div>
+        </div>
+      </div>
+      <div class="cert-year">2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Contact</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <p class="contact-sub">Open to consulting, strategy, and operations roles across Hyderabad and beyond. Always happy to connect.</p>
+  <div class="contact-links">
+    <a href="mailto:surajpatil2048@gmail.com" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      surajpatil2048@gmail.com
+    </a>
+    <a href="tel:+918624931072" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.76a16 16 0 0 0 6.29 6.29l1.58-1.56a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +91 86249 31072
+    </a>
+    <a href="https://linkedin.com" class="contact-link" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn Profile
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Suraj Vidhyanand Patil</p>
+  <p>Hyderabad, India · Available for consulting &amp; strategy roles</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
